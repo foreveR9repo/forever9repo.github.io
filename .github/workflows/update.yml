@@ -19,7 +19,7 @@ jobs:
         run: |
           mkdir -p debs data
           echo '[]' > data/tweaks.json
-          for repo in raphetsoso/groupedsettings raphetsoso/GroupedSettings-Addon; do
+          for repo in $(jq -r '.[].repo' data/sources.json); do
             if ! rel=$(gh api repos/$repo/releases/latest 2>/dev/null); then
               echo "::warning::Aucune release publiee trouvee pour $repo (brouillon, pre-release ou repo prive ?)"
               continue
@@ -30,6 +30,10 @@ jobs:
               '. + [{repo:$repo, version:($r.tag_name|ltrimstr("v")), date:$r.published_at, url:$r.html_url}]' \
               data/tweaks.json > /tmp/t.json && mv /tmp/t.json data/tweaks.json
           done
+      - name: Build site data (packages.json + icons)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/build_site_data.py
       - name: Build index
         run: |
           dpkg-scanpackages debs /dev/null > Packages
