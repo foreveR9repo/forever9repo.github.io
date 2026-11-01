@@ -1,0 +1,33 @@
+[
+ {
+  "id": "com.raphetsoso.groupedsettings17",
+  "name": "GroupedSettings17",
+  "author": "raphetsoso",
+  "section": "Tweaks",
+  "description": "Displays Settings edge-to-edge (classic grouped look) with a toggle and respring button in Settings",
+  "added": "2026-11-01T13:47:57Z",
+  "free": true,
+  "_src": "raphetsoso/groupedsettings",
+  "versions": [
+   {
+    "version": "2.1.2",
+    "date": "2026-11-01T13:47:57Z",
+    "deb": "https://github.com/raphetsoso/groupedsettings/releases/download/2.1.2/com.raphetsoso.groupedsettings17_2.1.2_iphoneos-arm64.deb",
+    "arch": "iphoneos-arm64",
+    "size": 17056,
+    "installedSize": 216,
+    "depends": "mobilesubstrate, preferenceloader",
+    "md5": "9334bbf7508ca1219911e16a17089438",
+    "sha256": "f3eedd8d67b117393fa62d9f8645708cf4e5d090fede79b82940f0f0f5cfeff0",
+    "_pkg": {
+     "id": "com.raphetsoso.groupedsettings17",
+     "name": "GroupedSettings17",
+     "author": "raphetsoso",
+     "section": "Tweaks",
+     "description": "Displays Settings edge-to-edge (classic grouped look) with a toggle and respring button in Settings"
+    }
+   }
+  ],
+  "icon": "icons/com.raphetsoso.groupedsettings17.png"
+ }
+]
