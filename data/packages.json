@@ -4,11 +4,29 @@
   "name": "GroupedSettings17 Addon for other Apps",
   "author": "raphetsoso",
   "section": "Tweaks",
-  "description": "Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel)",
+  "description": "Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel), available on https://raphetsoso.github.io/repo/ (not on Havoc)",
   "added": "2026-11-01T16:10:34Z",
   "free": true,
   "_src": "raphetsoso/GroupedSettings-Addon",
   "versions": [
+   {
+    "version": "1.1.0",
+    "date": "2026-11-01T20:46:39Z",
+    "deb": "https://github.com/raphetsoso/GroupedSettings-Addon/releases/download/1.1.0/com.raphetsoso.groupedsettings17addon_1.1.0_iphoneos-arm64.deb",
+    "arch": "iphoneos-arm64",
+    "size": 23390,
+    "installedSize": 128,
+    "depends": "mobilesubstrate, com.raphetsoso.groupedsettings17",
+    "md5": "50bbf3db313d3e5c52363bba314b030e",
+    "sha256": "5f4276286b7191f20898e90da40fb49c379e9583e045a5bc42d27dc9a3baa4ee",
+    "_pkg": {
+     "id": "com.raphetsoso.groupedsettings17addon",
+     "name": "GroupedSettings17 Addon for other Apps",
+     "author": "raphetsoso",
+     "section": "Tweaks",
+     "description": "Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel), available on https://raphetsoso.github.io/repo/ (not on Havoc)"
+    }
+   },
    {
     "version": "1.0.1",
     "date": "2026-11-01T16:10:34Z",
