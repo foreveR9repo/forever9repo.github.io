@@ -1,5 +1,35 @@
 [
  {
+  "id": "com.raphetsoso.groupedsettings17addon",
+  "name": "GroupedSettings17 Addon for other Apps",
+  "author": "raphetsoso",
+  "section": "Tweaks",
+  "description": "Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel)",
+  "added": "2026-11-01T16:10:34Z",
+  "free": true,
+  "_src": "raphetsoso/GroupedSettings-Addon",
+  "versions": [
+   {
+    "version": "1.0.1",
+    "date": "2026-11-01T16:10:34Z",
+    "deb": "https://github.com/raphetsoso/GroupedSettings-Addon/releases/download/1.0.1/com.raphetsoso.groupedsettings17addon_1.0.1_iphoneos-arm64.deb",
+    "arch": "iphoneos-arm64",
+    "size": 22766,
+    "installedSize": 128,
+    "depends": "mobilesubstrate, com.raphetsoso.groupedsettings17",
+    "md5": "a9abcc97bd12a6bda63a141faf656b07",
+    "sha256": "bfc809871c2e74cfba8e4fc6558f947bbdeaeed758ffaa32cb3037dc74069bc3",
+    "_pkg": {
+     "id": "com.raphetsoso.groupedsettings17addon",
+     "name": "GroupedSettings17 Addon for other Apps",
+     "author": "raphetsoso",
+     "section": "Tweaks",
+     "description": "Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel)"
+    }
+   }
+  ]
+ },
+ {
   "id": "com.raphetsoso.groupedsettings17",
   "name": "GroupedSettings17",
   "author": "raphetsoso",

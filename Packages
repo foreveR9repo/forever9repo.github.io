@@ -14,3 +14,19 @@ Description: Displays Settings edge-to-edge (classic grouped look) with a toggle
 Author: raphetsoso
 Name: GroupedSettings17
 
+Package: com.raphetsoso.groupedsettings17addon
+Version: 1.0.1
+Architecture: iphoneos-arm64
+Maintainer: raphetsoso
+Installed-Size: 128
+Depends: mobilesubstrate, com.raphetsoso.groupedsettings17
+Filename: debs/com.raphetsoso.groupedsettings17addon_1.0.1_iphoneos-arm64.deb
+Size: 22766
+MD5sum: a9abcc97bd12a6bda63a141faf656b07
+SHA1: 8c1412111cf15591fee53192f9ff4fc4d7a40fd2
+SHA256: bfc809871c2e74cfba8e4fc6558f947bbdeaeed758ffaa32cb3037dc74069bc3
+Section: Tweaks
+Description: Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel)
+Author: raphetsoso
+Name: GroupedSettings17 Addon for other Apps
+
