@@ -20,8 +20,12 @@ jobs:
           mkdir -p debs data
           echo '[]' > data/tweaks.json
           for repo in raphetsoso/groupedsettings raphetsoso/GroupedSettings-Addon; do
-            rel=$(gh api repos/$repo/releases/latest)
-            gh release download --repo $repo --pattern '*.deb' --dir debs --clobber
+            if ! rel=$(gh api repos/$repo/releases/latest 2>/dev/null); then
+              echo "::warning::Aucune release publiee trouvee pour $repo (brouillon, pre-release ou repo prive ?)"
+              continue
+            fi
+            gh release download --repo $repo --pattern '*.deb' --dir debs --clobber \
+              || echo "::warning::Aucun .deb attache a la release de $repo"
             jq --arg repo "$repo" --argjson r "$rel" \
               '. + [{repo:$repo, version:($r.tag_name|ltrimstr("v")), date:$r.published_at, url:$r.html_url}]' \
               data/tweaks.json > /tmp/t.json && mv /tmp/t.json data/tweaks.json
