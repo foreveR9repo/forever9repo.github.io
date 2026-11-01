@@ -1,0 +1,39 @@
+name: Update repo
+on:
+  schedule: [{ cron: "*/30 * * * *" }]   # toutes les 30 min
+  workflow_dispatch:                      # bouton manuel
+  repository_dispatch:
+    types: [tweak-released]               # déclenchement instantané (étape 3)
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y dpkg-dev
+      - name: Fetch latest releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p debs data
+          echo '[]' > data/tweaks.json
+          for repo in raphetsoso/groupedsettings raphetsoso/GroupedSettings-Addon; do
+            rel=$(gh api repos/$repo/releases/latest)
+            gh release download --repo $repo --pattern '*.deb' --dir debs --clobber
+            jq --arg repo "$repo" --argjson r "$rel" \
+              '. + [{repo:$repo, version:($r.tag_name|ltrimstr("v")), date:$r.published_at, url:$r.html_url}]' \
+              data/tweaks.json > /tmp/t.json && mv /tmp/t.json data/tweaks.json
+          done
+      - name: Build index
+        run: |
+          dpkg-scanpackages debs /dev/null > Packages
+          gzip -k -f Packages
+          bzip2 -k -f Packages
+      - name: Commit
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || (git commit -m "Update from releases" && git push)
