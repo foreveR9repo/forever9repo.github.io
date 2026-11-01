@@ -105,23 +105,25 @@ Exemple :
   function fmtDate(v){var d=new Date(v);return isNaN(d)?"":d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"})+" "+fmtDay(v);}
   function fmtSize(b){return b?(b/1024).toFixed(2)+" Kb":"";}
   function pick(p,v,k){return v[k]!=null&&v[k]!==""?v[k]:p[k];}
-  function href(p){return "#/package/"+encodeURIComponent(p.id);}
+  function href(p,v){return "#/package/"+encodeURIComponent(p.id)+(v?"/"+encodeURIComponent(v.version):"");}
 
   function norm(x){x=String(x==null?"":x).toLowerCase();try{x=x.normalize("NFD").replace(/[\u0300-\u036f]/g,"");}catch(e){}return x;}
 
   /* ---------- home list ---------- */
   var results=document.getElementById("results"),empty=document.getElementById("empty"),emptyText=document.getElementById("emptyText");
   function renderList(){
-    var html="",day="",open=false;
-    DATA.forEach(function(p){
-      var v=p.versions[0],d=fmtDay(v.date);
+    var html="",day="",open=false,items=[];
+    DATA.forEach(function(p){p.versions.forEach(function(v,k){items.push({p:p,v:v,k:k});});});
+    items.sort(function(a,b){return ts(b.v.date)-ts(a.v.date);});
+    items.forEach(function(it){
+      var p=it.p,v=it.v,d=fmtDay(v.date),isNew=it.k===p.versions.length-1;
       if(d!==day){
         if(open)html+="</div></div></div>";
         html+='<div class="day"><div class="row"><div class="col-xs-12"><h2 class="text-left lead"><span class="irucon irucon-info"></span> '+esc(d)+'</h2></div></div><div class="row"><div class="list-group media">';
         day=d;open=true;
       }
       var q=norm(p.name);
-      html+='<a href="'+href(p)+'" data-q="'+esc(q)+'" class="list-group-item media text-left col-xs-12 col-sm-6 col-md-4 packages"><span class="pull-left"><img width="60" height="60" class="media-object img-rounded" src="'+esc(p.icon||"")+'" alt="'+esc(p.name)+'" onerror="this.style.visibility=\'hidden\'"></span><div class="media-body"><h3 class="h4 media-heading"><span class="ellipsis mw75">'+esc(p.name)+'</span> <small>'+esc(v.version)+'</small></h3><p class="mtr5"><span class="label label-primary">'+(p.versions.length===1?"New":"Update")+'</span></p>'+(p.section?'<p class="mtr5"><span class="ellipsis mw75"><span class="irucon irucon-list"></span> '+esc(p.section)+'</span></p>':'')+'</div></a>';
+      html+='<a href="'+href(p,v)+'" data-q="'+esc(q)+'" class="list-group-item media text-left col-xs-12 col-sm-6 col-md-4 packages"><span class="pull-left"><img width="60" height="60" class="media-object img-rounded" src="'+esc(p.icon||"")+'" alt="'+esc(p.name)+'" onerror="this.style.visibility=\'hidden\'"></span><div class="media-body"><h3 class="h4 media-heading"><span class="ellipsis mw75">'+esc(p.name)+'</span> <small>'+esc(v.version)+'</small></h3><p class="mtr5"><span class="label label-primary">'+(isNew?"New":"Update")+'</span></p>'+(p.section?'<p class="mtr5"><span class="ellipsis mw75"><span class="irucon irucon-list"></span> '+esc(p.section)+'</span></p>':'')+'</div></a>';
     });
     if(open)html+="</div></div></div>";
     results.innerHTML=html;
@@ -155,8 +157,8 @@ Exemple :
 
   /* ---------- package page (same file, #/package/<id>) ---------- */
   function li(k,val,cls){if(val==null||val==="")return "";return '<li class="list-group-item'+(cls?" "+cls:"")+'"><b>'+k+'</b> '+esc(val)+'</li>';}
-  function renderDetail(p){
-    var v=p.versions[0],oldest=p.versions[p.versions.length-1];
+  function renderDetail(p,idx){
+    idx=idx||0;var v=p.versions[idx],oldest=p.versions[p.versions.length-1];
     var info='<li class="list-group-item breakword"><b>Identifier</b> '+esc(p.id)+'</li>'
       +li("Added Date",fmtDate(p.added||oldest.date))
       +li("Updated Date",fmtDate(v.date))
@@ -176,15 +178,22 @@ Exemple :
     return '<h1 class="text-center">'+(p.icon?'<img class="img-rounded" src="'+esc(p.icon)+'" alt="Icon" width="60" height="60" onerror="this.style.display=\'none\'"> ':'')+'<span class="breakword">'+esc(p.name)+'</span></h1>'
       +'<div class="row lead"><div class="col-lg-5"><h2 class="text-center">Informations</h2><ul class="text-center list-group">'+info+'</ul></div>'
       +'<div class="col-lg-7"><h2 class="text-center">Description</h2>'+(p.description?'<p class="text-center breakword">'+esc(p.description)+'</p>':'')
+      +(v.deb?'<p class="text-center"><a rel="nofollow" href="'+esc(v.deb)+'" class="btn btn-primary btn-block">Download version '+esc(v.version)+'</a></p>':'')
       +(p.depiction?'<p class="text-center"><a target="_blank" href="'+esc(p.depiction)+'" class="btn btn-default btn-block" rel="nofollow noopener">Depiction</a></p>':'')
       +'<hr><h2 class="text-center">Version History</h2><ul class="list-group">'+hist+'</ul></div></div>';
   }
   var baseTitle=document.title;
   function route(){
-    var m=/^#\/package\/(.+)$/.exec(location.hash),p=null;
-    if(m){var id;try{id=decodeURIComponent(m[1]);}catch(e){id=m[1];}p=DATA.filter(function(x){return x.id===id;})[0]||null;}
+    var m=/^#\/package\/([^\/]+)(?:\/(.+))?$/.exec(location.hash),p=null,idx=0;
+    if(m){
+      var id,ver=null;
+      try{id=decodeURIComponent(m[1]);}catch(e){id=m[1];}
+      if(m[2]){try{ver=decodeURIComponent(m[2]);}catch(e){ver=m[2];}}
+      p=DATA.filter(function(x){return x.id===id;})[0]||null;
+      if(p&&ver!==null){for(var i=0;i<p.versions.length;i++){if(String(p.versions[i].version)===ver){idx=i;break;}}}
+    }
     if(p){
-      detail.innerHTML=renderDetail(p);home.hidden=true;detail.hidden=false;
+      detail.innerHTML=renderDetail(p,idx);home.hidden=true;detail.hidden=false;
       document.title=p.name+" - raphetsoso's repository";window.scrollTo(0,0);
     }else{
       detail.hidden=true;detail.innerHTML="";home.hidden=false;document.title=baseTitle;
