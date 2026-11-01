@@ -1,0 +1,47 @@
+{
+ "minVersion": "0.1",
+ "class": "DepictionTabView",
+ "tintColor": "#00c4a0",
+ "tabs": [
+  {
+   "tabname": "Details",
+   "class": "DepictionStackView",
+   "views": [
+    {
+     "class": "DepictionMarkdownView",
+     "markdown": "**Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel)**",
+     "useSpacing": true
+    },
+    {
+     "class": "DepictionSeparatorView"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Version",
+     "text": "1.0.1"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Author",
+     "text": "raphetsoso"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Section",
+     "text": "Tweaks"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Requires",
+     "text": "mobilesubstrate, com.raphetsoso.groupedsettings17"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Architecture",
+     "text": "iphoneos-arm64"
+    }
+   ]
+  }
+ ],
+ "headerImage": "https://raphetsoso.github.io/repo/assets/banner.png"
+}

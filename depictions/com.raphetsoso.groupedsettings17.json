@@ -1,0 +1,47 @@
+{
+ "minVersion": "0.1",
+ "class": "DepictionTabView",
+ "tintColor": "#00c4a0",
+ "tabs": [
+  {
+   "tabname": "Details",
+   "class": "DepictionStackView",
+   "views": [
+    {
+     "class": "DepictionMarkdownView",
+     "markdown": "**Displays Settings edge-to-edge (classic grouped look) with a toggle and respring button in Settings**",
+     "useSpacing": true
+    },
+    {
+     "class": "DepictionSeparatorView"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Version",
+     "text": "2.1.2"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Author",
+     "text": "raphetsoso"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Section",
+     "text": "Tweaks"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Requires",
+     "text": "mobilesubstrate, preferenceloader"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Architecture",
+     "text": "iphoneos-arm64"
+    }
+   ]
+  }
+ ],
+ "headerImage": "https://raphetsoso.github.io/repo/assets/banner.png"
+}
