@@ -109,3 +109,19 @@ jobs:
           # Un push fait avec GITHUB_TOKEN ne declenche pas la publication de Pages : on la demande a la main
           gh api -X POST "repos/${{ github.repository }}/pages/builds" \
             || echo "::warning::Impossible de lancer le build Pages (Settings > Pages : source = Deploy from a branch, main, / (root))"
+
+      - name: Check site is live
+        env:
+          URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: |
+          # Attend la publication de Pages (jusqu'a ~5 min) et affiche le code HTTP de chaque fichier
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$URL/Release?t=$(date +%s)")
+            echo "Essai $i : $URL/Release -> HTTP $code"
+            [ "$code" = "200" ] && break
+            sleep 15
+          done
+          for f in "" Packages Packages.gz CydiaIcon.png; do
+            echo "$URL/$f -> HTTP $(curl -s -o /dev/null -w '%{http_code}' "$URL/$f?t=$(date +%s)")"
+          done
+          [ "$code" = "200" ] || echo "::warning::Release n'est pas servi par le site (HTTP $code) : verifier Settings > Pages"
