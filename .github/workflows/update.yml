@@ -6,6 +6,7 @@ on:
     types: [tweak-released]               # declenchement instantane
 permissions:
   contents: write
+  pages: write
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -100,3 +101,11 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add -A -f
           git diff --cached --quiet || (git commit -m "Update from releases" && git push)
+
+      - name: Redeploy GitHub Pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Un push fait avec GITHUB_TOKEN ne declenche pas la publication de Pages : on la demande a la main
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" \
+            || echo "::warning::Impossible de lancer le build Pages (Settings > Pages : source = Deploy from a branch, main, / (root))"
