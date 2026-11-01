@@ -3,7 +3,7 @@ on:
   schedule: [{ cron: "*/30 * * * *" }]   # toutes les 30 min
   workflow_dispatch:                      # bouton manuel
   repository_dispatch:
-    types: [tweak-released]               # déclenchement instantané (étape 3)
+    types: [tweak-released]               # declenchement instantane
 permissions:
   contents: write
 jobs:
@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Install tools
         run: sudo apt-get update && sudo apt-get install -y dpkg-dev
+
       - name: Fetch latest releases
         env:
           GH_TOKEN: ${{ github.token }}
@@ -30,15 +32,46 @@ jobs:
               '. + [{repo:$repo, version:($r.tag_name|ltrimstr("v")), date:$r.published_at, url:$r.html_url}]' \
               data/tweaks.json > /tmp/t.json && mv /tmp/t.json data/tweaks.json
           done
+
       - name: Build site data (packages.json + icons)
         env:
           GH_TOKEN: ${{ github.token }}
         run: python3 scripts/build_site_data.py
-      - name: Build index
+
+      - name: Build index + Release
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_NUMBER: ${{ github.run_number }}
         run: |
           dpkg-scanpackages debs /dev/null > Packages
           gzip -k -f Packages
           bzip2 -k -f Packages
+
+          VERSION="$(date -u +%Y.%m.%d).$RUN_NUMBER"
+          ARCHS="$(grep -h '^Architecture:' Packages | cut -d' ' -f2 | sort -u | tr '\n' ' ' | sed 's/ $//')"
+          [ -z "$ARCHS" ] && ARCHS="iphoneos-arm iphoneos-arm64"
+
+          {
+            echo "Origin: $REPO_NAME"
+            echo "Label: $REPO_NAME"
+            echo "Suite: stable"
+            echo "Version: $VERSION"
+            echo "Codename: ios"
+            echo "Architectures: $ARCHS"
+            echo "Components: main"
+            echo "Description: Repo de $OWNER"
+            echo "Date: $(date -Ru)"
+            echo "MD5Sum:"
+            for f in Packages Packages.gz Packages.bz2; do
+              echo " $(md5sum $f | cut -d' ' -f1) $(stat -c%s $f) $f"
+            done
+            echo "SHA256:"
+            for f in Packages Packages.gz Packages.bz2; do
+              echo " $(sha256sum $f | cut -d' ' -f1) $(stat -c%s $f) $f"
+            done
+          } > Release
+
       - name: Commit
         run: |
           git config user.name "github-actions"
