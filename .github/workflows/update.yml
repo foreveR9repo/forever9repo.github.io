@@ -40,27 +40,41 @@ jobs:
 
       - name: Build index + Release
         env:
-          REPO_NAME: ${{ github.event.repository.name }}
           OWNER: ${{ github.repository_owner }}
           RUN_NUMBER: ${{ github.run_number }}
         run: |
+          touch .nojekyll   # GitHub Pages sert les fichiers tels quels (sans Jekyll)
           dpkg-scanpackages debs /dev/null > Packages
           gzip -k -f Packages
           bzip2 -k -f Packages
+
+          NAME="$OWNER's repo"
+
+          # Icone du repo pour Sileo/Zebra/Cydia (meme logo que la topbar et le favicon du site)
+          # Si icon.png n'existe pas a la racine, on prend automatiquement la premiere icone de tweak
+          if [ ! -f icon.png ]; then
+            first="$(ls icons/*.png 2>/dev/null | head -n 1)"
+            if [ -n "$first" ]; then
+              cp -f "$first" icon.png
+            else
+              echo "::warning::Aucun icon.png a la racine et aucune icone dans icons/ : pas de logo pour le repo"
+            fi
+          fi
+          [ -f icon.png ] && cp -f icon.png CydiaIcon.png
 
           VERSION="$(date -u +%Y.%m.%d).$RUN_NUMBER"
           ARCHS="$(grep -h '^Architecture:' Packages | cut -d' ' -f2 | sort -u | tr '\n' ' ' | sed 's/ $//')"
           [ -z "$ARCHS" ] && ARCHS="iphoneos-arm iphoneos-arm64"
 
           {
-            echo "Origin: $REPO_NAME"
-            echo "Label: $REPO_NAME"
+            echo "Origin: $NAME"
+            echo "Label: $NAME"
             echo "Suite: stable"
             echo "Version: $VERSION"
             echo "Codename: ios"
             echo "Architectures: $ARCHS"
             echo "Components: main"
-            echo "Description: Repo de $OWNER"
+            echo "Description: $NAME"
             echo "Date: $(date -Ru)"
             echo "MD5Sum:"
             for f in Packages Packages.gz Packages.bz2; do
