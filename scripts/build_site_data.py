@@ -125,8 +125,9 @@ def fetch_icon(repo, tag, paths, assets, dest):
     for a in assets:
         if a["name"].lower() == "icon.png":
             candidates.append(a["browser_download_url"])
-    for p in paths:
-        candidates.append("https://raw.githubusercontent.com/%s/%s/%s" % (repo, urllib.parse.quote(tag), urllib.parse.quote(p)))
+    for ref in (tag, "HEAD"):  # d'abord le tag de la release, puis la branche par defaut (main)
+        for p in paths:
+            candidates.append("https://raw.githubusercontent.com/%s/%s/%s" % (repo, urllib.parse.quote(ref), urllib.parse.quote(p)))
     for url in candidates:
         try:
             tmp = dest + ".tmp"
