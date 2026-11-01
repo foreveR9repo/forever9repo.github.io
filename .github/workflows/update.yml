@@ -46,6 +46,8 @@ jobs:
         run: |
           touch .nojekyll   # GitHub Pages sert les fichiers tels quels (sans Jekyll)
           dpkg-scanpackages debs /dev/null > Packages
+          # Icone + depiction Sileo (banniere) ajoutees a Packages avant la compression
+          SITE_URL="https://${OWNER}.github.io/${{ github.event.repository.name }}" python3 scripts/build_depictions.py
           gzip -k -f Packages
           bzip2 -k -f Packages
 
