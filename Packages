@@ -17,16 +17,16 @@ Icon: https://raphetsoso.github.io/repo/assets/logogs17.png
 SileoDepiction: https://raphetsoso.github.io/repo/depictions/com.raphetsoso.groupedsettings17.json
 
 Package: com.raphetsoso.groupedsettings17addon
-Version: 1.1.0
+Version: 1.1.3
 Architecture: iphoneos-arm64
 Maintainer: raphetsoso
-Installed-Size: 128
+Installed-Size: 144
 Depends: mobilesubstrate, com.raphetsoso.groupedsettings17
-Filename: debs/com.raphetsoso.groupedsettings17addon_1.1.0_iphoneos-arm64.deb
-Size: 23390
-MD5sum: 50bbf3db313d3e5c52363bba314b030e
-SHA1: a4c41dbe492d4d6cb6e61df326f60d8eccbe69e2
-SHA256: 5f4276286b7191f20898e90da40fb49c379e9583e045a5bc42d27dc9a3baa4ee
+Filename: debs/com.raphetsoso.groupedsettings17addon_1.1.3_iphoneos-arm64.deb
+Size: 24784
+MD5sum: 5e930ec01f0ba729c8de6d9ecc2134fc
+SHA1: 7c42a8a125b00bcbadf379560c8fa6720308ef45
+SHA256: 167064011c7e94c4901e58b10e09170ee35213e38b3433cd2e142e5ffa52ef07
 Section: Tweaks
 Description: Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel), available on https://raphetsoso.github.io/repo/ (not on Havoc)
 Author: raphetsoso
