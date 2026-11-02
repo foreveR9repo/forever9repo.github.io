@@ -1,14 +1,14 @@
 Package: com.raphetsoso.groupedsettings17
-Version: 2.1.2
+Version: 2.2.0
 Architecture: iphoneos-arm64
 Maintainer: raphetsoso
-Installed-Size: 216
+Installed-Size: 408
 Depends: mobilesubstrate, preferenceloader
-Filename: debs/com.raphetsoso.groupedsettings17_2.1.2_iphoneos-arm64.deb
-Size: 17056
-MD5sum: 9334bbf7508ca1219911e16a17089438
-SHA1: 25089a17e41365c5a0baa56f718c39d3503306fb
-SHA256: f3eedd8d67b117393fa62d9f8645708cf4e5d090fede79b82940f0f0f5cfeff0
+Filename: debs/com.raphetsoso.groupedsettings17_2.2.0_iphoneos-arm64.deb
+Size: 20848
+MD5sum: bc141a88487823b44e69a41f64193492
+SHA1: c468bfda01b031deda091b14c30f8bb987c22c66
+SHA256: d4ebef1473ff34dc0bb00667785ef6cce788d30cd1c8ff426fdb1ac2d36bbcec
 Section: Tweaks
 Description: Displays Settings edge-to-edge (classic grouped look) with a toggle and respring button in Settings
 Author: raphetsoso
