@@ -15,6 +15,10 @@ SITE = os.environ.get("SITE_URL", "").rstrip("/")
 ICON_FILE = "assets/logogs17.png"
 BANNER_FILE = "assets/banner.png"
 TINT = "#00c4a0"
+# Icone + banniere propres a certains paquets (les autres gardent ICON_FILE / BANNER_FILE)
+OVERRIDES = {
+    "com.raphetsoso.groupedsettings17addon": {"icon": "assets/addon-icon.png", "banner": "assets/addon-banner.png"},
+}
 DROP = {"icon", "depiction", "sileodepiction", "header"}  # champs remplaces par les notres
 
 
@@ -64,7 +68,7 @@ def description_markdown(desc):
     return md
 
 
-def depiction(fields, has_banner):
+def depiction(fields, banner_file):
     rows = [
         ("Version", fields.get("Version")),
         ("Author", fields.get("Author") or fields.get("Maintainer")),
@@ -83,8 +87,8 @@ def depiction(fields, has_banner):
         "tintColor": TINT,
         "tabs": [{"tabname": "Details", "class": "DepictionStackView", "views": views}],
     }
-    if has_banner:
-        d["headerImage"] = SITE + "/" + BANNER_FILE
+    if banner_file:
+        d["headerImage"] = SITE + "/" + banner_file
     return d
 
 
@@ -113,14 +117,17 @@ def main():
         if not pid:
             out_blocks.append(block)
             continue
+        ov = OVERRIDES.get(pid, {})
+        icon_file = ov.get("icon") if os.path.exists(os.path.join(ROOT, ov.get("icon", "-"))) else ICON_FILE
+        banner_file = ov.get("banner") if os.path.exists(os.path.join(ROOT, ov.get("banner", "-"))) else BANNER_FILE
         with open(os.path.join(ROOT, "depictions", pid + ".json"), "w", encoding="utf-8") as f:
-            json.dump(depiction(fields, has_banner), f, ensure_ascii=False, indent=1)
+            json.dump(depiction(fields, banner_file if os.path.exists(os.path.join(ROOT, banner_file)) else None), f, ensure_ascii=False, indent=1)
             f.write("\n")
         lines = drop_fields(lines)
         while lines and not lines[-1].strip():
             lines.pop()
-        if has_icon:
-            lines.append("Icon: %s/%s" % (SITE, ICON_FILE))
+        if os.path.exists(os.path.join(ROOT, icon_file)):
+            lines.append("Icon: %s/%s" % (SITE, icon_file))
         lines.append("SileoDepiction: %s/depictions/%s.json" % (SITE, pid))
         out_blocks.append("\n".join(lines))
 
