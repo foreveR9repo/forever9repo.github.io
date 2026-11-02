@@ -10,6 +10,24 @@
   "_src": "raphetsoso/GroupedSettings-Addon",
   "versions": [
    {
+    "version": "1.3.1",
+    "date": "2026-11-02T20:20:38Z",
+    "deb": "https://github.com/raphetsoso/GroupedSettings-Addon/releases/download/1.3.1/com.raphetsoso.groupedsettings17addon_1.3.1_iphoneos-arm64.deb",
+    "arch": "iphoneos-arm64",
+    "size": 38632,
+    "installedSize": 304,
+    "depends": "mobilesubstrate, com.raphetsoso.groupedsettings17",
+    "md5": "c2045d03a36bfb98731b4428d69b6118",
+    "sha256": "e4142bf82304bf774a65f3d6af556a82ae7a6913eb5e423e42b8555577ebf374",
+    "_pkg": {
+     "id": "com.raphetsoso.groupedsettings17addon",
+     "name": "GroupedSettings17 Addon for other Apps",
+     "author": "raphetsoso",
+     "section": "Tweaks",
+     "description": "Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel), available on https://raphetsoso.github.io/repo/ (not on Havoc)"
+    }
+   },
+   {
     "version": "1.3.0",
     "date": "2026-11-02T19:27:46Z",
     "deb": "https://github.com/raphetsoso/GroupedSettings-Addon/releases/download/1.3.0/com.raphetsoso.groupedsettings17addon_1.3.0_iphoneos-arm64.deb",
