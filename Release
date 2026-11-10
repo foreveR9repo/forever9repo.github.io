@@ -1,17 +1,17 @@
 Origin: raphetsoso's repo
 Label: raphetsoso's repo
 Suite: stable
-Version: 2026.11.09.62
+Version: 2026.11.10.63
 Codename: ios
 Architectures: iphoneos-arm64
 Components: main
 Description: raphetsoso's repo
-Date: Mon, 09 Nov 2026 16:57:49 +0000
+Date: Tue, 10 Nov 2026 00:31:38 +0000
 MD5Sum:
  f468a46aafd7b5cc83fe81fc60ca9180 1967 Packages
- 01a820a980a1a4c40d94662bbd13629d 904 Packages.gz
+ 263a8d57f689dccc5aed533b88752fbf 904 Packages.gz
  d8a7d7c480d065b5c83dd1b09cb6a1e0 1004 Packages.bz2
 SHA256:
  94a67d830d70f252686b1d76a8f67007eca28fa22dee24dec10692bf3c284ce5 1967 Packages
- f831efe1a7ac6b2507e520668b02ae9326176b0cdec8080493790d5fca26fffe 904 Packages.gz
+ c5d04d129c9933235b7364d9c372d75bc2a4d703e2a0ef24aadc527f483cab89 904 Packages.gz
  0c48683a87c5d53144b865583fd464541ef97747e1304a061ba36c54eb74776b 1004 Packages.bz2
