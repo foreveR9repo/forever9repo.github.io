@@ -3,8 +3,13 @@
     "repo": "raphetsoso/groupedsettings",
     "icon": "groupedsettings17prefs/Resources/logo@3x.png"
   },
+  
   {
     "repo": "raphetsoso/GroupedSettings-Addon",
     "icon": "logogs17new.png"
+  },
+  {
+  "repo": "foreveR9repo/Little16withSettings",
+  "icon": "little16withsettingsprefs/Resources/logo@3x.png"
   }
 ]
