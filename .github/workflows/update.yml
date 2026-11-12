@@ -4,6 +4,11 @@ on:
   workflow_dispatch:                      # bouton manuel
   repository_dispatch:
     types: [tweak-released]               # declenchement instantane
+  push:
+    paths: ["debs/**", "assets/**", "icons/**", "scripts/**"]   # tweak ajoute a la main -> mise a jour auto
+concurrency:
+  group: update-repo
+  cancel-in-progress: false
 permissions:
   contents: write
   pages: write
@@ -44,14 +49,15 @@ jobs:
           OWNER: ${{ github.repository_owner }}
           RUN_NUMBER: ${{ github.run_number }}
         run: |
+          OWNER_LC="$(echo "$OWNER" | tr '[:upper:]' '[:lower:]')"
           touch .nojekyll   # GitHub Pages sert les fichiers tels quels (sans Jekyll)
           dpkg-scanpackages debs /dev/null > Packages
           # Icone + depiction Sileo (banniere) ajoutees a Packages avant la compression
-          SITE_URL="https://${OWNER}.github.io/${{ github.event.repository.name }}" python3 scripts/build_depictions.py
+          SITE_URL="https://${OWNER_LC}.github.io" python3 scripts/build_depictions.py
           gzip -k -f Packages
           bzip2 -k -f Packages
 
-          NAME="$OWNER's repo"
+          NAME="foreveR9 repo"
 
           # Icone du repo pour Sileo/Zebra/Cydia (meme logo que la topbar et le favicon du site)
           # Si icon.png n'existe pas a la racine, on prend automatiquement la premiere icone de tweak
@@ -114,7 +120,7 @@ jobs:
 
       - name: Check site is live
         env:
-          URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          URL: https://forever9repo.github.io
         run: |
           # Attend la publication de Pages (jusqu'a ~5 min) et affiche le code HTTP de chaque fichier
           for i in $(seq 1 20); do
