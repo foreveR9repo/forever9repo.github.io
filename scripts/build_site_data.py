@@ -6,6 +6,9 @@
   .deb attache devient une version dans l'historique du paquet.
 - Les infos du paquet (nom, auteur, section, depends...) sont lues dans le .deb lui-meme.
 - Les liens de telechargement pointent directement vers les .deb sur GitHub.
+- Les .deb poses a la main dans debs/ (tweaks d'autres personnes, publies manuellement) et
+  absents des releases sont ajoutes aussi (lien relatif debs/<fichier>). Icone optionnelle :
+  icons/<id>.png ou assets/<id>-icon.png.
 - Les .deb deja analyses sont repris du precedent packages.json (pas de re-telechargement).
 """
 import hashlib
@@ -14,6 +17,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import datetime
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -73,6 +77,16 @@ def read_deb(path):
     return fields
 
 
+LEGACY_URLS = ["https://raphetsoso.github.io/repo/", "https://raphetsoso.github.io/repo"]
+NEW_SITE = "https://forever9repo.github.io/"
+
+
+def fix_legacy(text):
+    for old in LEGACY_URLS:
+        text = text.replace(old, NEW_SITE)
+    return text
+
+
 def digest(path):
     md5, sha = hashlib.md5(), hashlib.sha256()
     with open(path, "rb") as f:
@@ -102,7 +116,7 @@ def analyse_asset(release, asset):
         "name": c.get("Name") or c["Package"],
         "author": c.get("Author") or c.get("Maintainer", ""),
         "section": c.get("Section", ""),
-        "description": c.get("Description", ""),
+        "description": fix_legacy(c.get("Description", "")),
     }
     ver = {
         "version": c.get("Version") or release["tag_name"].lstrip("v"),
@@ -213,6 +227,56 @@ def main():
                 continue
             packages[pid]["icon"] = "icons/%s.png" % pid
 
+    # ---- .deb ajoutes a la main dans debs/ (pas issus d'une release suivie)
+    now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    known = {(pid, v.get("version")) for pid, e in packages.items() for v in e["versions"]}
+    debs_dir = os.path.join(ROOT, "debs")
+    for name in sorted(os.listdir(debs_dir)) if os.path.isdir(debs_dir) else []:
+        if not name.lower().endswith(".deb"):
+            continue
+        path = os.path.join(debs_dir, name)
+        rel = "debs/" + name
+        try:
+            c = read_deb(path)
+            pid, version = c["Package"], c["Version"]
+        except (OSError, subprocess.CalledProcessError, KeyError) as e:
+            warn("Impossible de lire %s (%s)" % (rel, e))
+            continue
+        if (pid, version) in known:
+            continue  # deja connu via une release
+        md5, sha = digest(path)
+        old = cache.get(rel)
+        date = old[1].get("date") if old and old[1].get("sha256") == sha else None
+        pkg = {
+            "id": pid,
+            "name": c.get("Name") or pid,
+            "author": c.get("Author") or c.get("Maintainer", ""),
+            "section": c.get("Section", ""),
+            "description": fix_legacy(c.get("Description", "")),
+        }
+        ver = {
+            "version": version,
+            "date": date or now,
+            "deb": rel,
+            "arch": c.get("Architecture", ""),
+            "size": os.path.getsize(path),
+            "installedSize": to_int(c.get("Installed-Size")),
+            "depends": c.get("Depends", ""),
+            "priority": c.get("Priority", ""),
+            "md5": md5,
+            "sha256": sha,
+        }
+        ver = {k: v for k, v in ver.items() if v not in (None, "")}
+        ver["_pkg"] = pkg
+        entry = packages.setdefault(pid, {"_src": "local", "versions": []})
+        entry["versions"].append(ver)
+        known.add((pid, version))
+        for icon in ("icons/%s.png" % pid, "assets/%s-icon.png" % pid):
+            if os.path.exists(os.path.join(ROOT, icon)):
+                entry.setdefault("icon", icon)
+                break
+        print("Tweak manuel : %s %s (%s)" % (pid, version, rel))
+
     result = []
     for pid, entry in packages.items():
         vers = sorted(entry["versions"], key=lambda v: v.get("date") or "", reverse=True)
@@ -222,7 +286,7 @@ def main():
             "name": newest_pkg.get("name", pid),
             "author": newest_pkg.get("author", ""),
             "section": newest_pkg.get("section", ""),
-            "description": newest_pkg.get("description", ""),
+            "description": fix_legacy(newest_pkg.get("description", "")),
             "added": vers[-1].get("date"),
             "free": True,
             "_src": entry.get("_src"),

@@ -13,8 +13,8 @@ Section: Tweaks
 Description: Displays Settings edge-to-edge (classic grouped look) with a toggle and respring button in Settings
 Author: raphetsoso
 Name: GroupedSettings17
-Icon: https://raphetsoso.github.io/repo/assets/logogs17.png
-SileoDepiction: https://raphetsoso.github.io/repo/depictions/com.raphetsoso.groupedsettings17.json
+Icon: https://forever9repo.github.io/assets/logogs17.png
+SileoDepiction: https://forever9repo.github.io/depictions/com.raphetsoso.groupedsettings17.json
 
 Package: com.raphetsoso.groupedsettings17addon
 Version: 1.3.1
@@ -28,9 +28,9 @@ MD5sum: c2045d03a36bfb98731b4428d69b6118
 SHA1: fa610c972f6ed2c492ebfbb539e63bf687d0224d
 SHA256: e4142bf82304bf774a65f3d6af556a82ae7a6913eb5e423e42b8555577ebf374
 Section: Tweaks
-Description: Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel), available on https://raphetsoso.github.io/repo/ (not on Havoc)
+Description: Edge-to-edge style for Tips, Contacts, Phone, Safari, Files, Mail, Health, Photos, Camera, Clock, Maps, Weather, Reminders, Fitness, Find My, Translate, Freeform, Voice Memos, Books, Apple Support, Journal, Watch, Home, the other preinstalled Apple apps and popular third-party apps, and any other installed app (auto-detected), in two sub-menus (preinstalled and third-party). Requires GroupedSettings17 (per-app toggles are in its Settings panel), available on https://forever9repo.github.io/ (not on Havoc)
 Author: raphetsoso
 Name: GroupedSettings17 Addon for other Apps
-Icon: https://raphetsoso.github.io/repo/assets/addon-icon.png
-SileoDepiction: https://raphetsoso.github.io/repo/depictions/com.raphetsoso.groupedsettings17addon.json
+Icon: https://forever9repo.github.io/assets/addon-icon.png
+SileoDepiction: https://forever9repo.github.io/depictions/com.raphetsoso.groupedsettings17addon.json
 

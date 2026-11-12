@@ -19,6 +19,10 @@ TINT = "#00c4a0"
 OVERRIDES = {
     "com.raphetsoso.groupedsettings17addon": {"icon": "assets/addon-icon.png", "banner": "assets/addon-banner.png"},
 }
+# Ancienne URL du depot, encore citee dans la description de certains .deb : remplacee par la nouvelle
+LEGACY_URLS = ["https://raphetsoso.github.io/repo/", "https://raphetsoso.github.io/repo"]
+# Tweaks ajoutes a la main : met assets/<id>-icon.png et assets/<id>-banner.png pour leur donner
+# leur propre icone / banniere (sinon : logo et banniere par defaut ci-dessus).
 DROP = {"icon", "depiction", "sileodepiction", "header"}  # champs remplaces par les notres
 
 
@@ -52,6 +56,12 @@ def drop_fields(lines):
         if not skipping:
             out.append(line)
     return out
+
+
+def fix_legacy(text):
+    for old in LEGACY_URLS:
+        text = text.replace(old, SITE + "/")
+    return text
 
 
 def description_markdown(desc):
@@ -117,9 +127,13 @@ def main():
         if not pid:
             out_blocks.append(block)
             continue
-        ov = OVERRIDES.get(pid, {})
-        icon_file = ov.get("icon") if os.path.exists(os.path.join(ROOT, ov.get("icon", "-"))) else ICON_FILE
-        banner_file = ov.get("banner") if os.path.exists(os.path.join(ROOT, ov.get("banner", "-"))) else BANNER_FILE
+        ov = dict(OVERRIDES.get(pid, {}))
+        ov.setdefault("icon", "assets/%s-icon.png" % pid)
+        ov.setdefault("banner", "assets/%s-banner.png" % pid)
+        lines = [fix_legacy(l) for l in lines]
+        fields = {k: fix_legacy(v) for k, v in fields.items()}
+        icon_file = ov["icon"] if os.path.exists(os.path.join(ROOT, ov["icon"])) else ICON_FILE
+        banner_file = ov["banner"] if os.path.exists(os.path.join(ROOT, ov["banner"])) else BANNER_FILE
         with open(os.path.join(ROOT, "depictions", pid + ".json"), "w", encoding="utf-8") as f:
             json.dump(depiction(fields, banner_file if os.path.exists(os.path.join(ROOT, banner_file)) else None), f, ensure_ascii=False, indent=1)
             f.write("\n")
