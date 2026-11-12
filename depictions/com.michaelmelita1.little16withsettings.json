@@ -1,0 +1,47 @@
+{
+ "minVersion": "0.1",
+ "class": "DepictionTabView",
+ "tintColor": "#00c4a0",
+ "tabs": [
+  {
+   "tabname": "Details",
+   "class": "DepictionStackView",
+   "views": [
+    {
+     "class": "DepictionMarkdownView",
+     "markdown": "**Little16 (iPhone X gestures, floating dock, iPad status bar, lockscreen quick actions) with a Settings pane to toggle each feature**",
+     "useSpacing": true
+    },
+    {
+     "class": "DepictionSeparatorView"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Version",
+     "text": "0.2.0"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Author",
+     "text": "michaelmelita1"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Section",
+     "text": "Tweaks"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Requires",
+     "text": "mobilesubstrate, preferenceloader"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Architecture",
+     "text": "iphoneos-arm64"
+    }
+   ]
+  }
+ ],
+ "headerImage": "https://forever9repo.github.io/assets/banner.png"
+}

@@ -1,3 +1,23 @@
+Package: com.michaelmelita1.little16withsettings
+Version: 0.2.0
+Architecture: iphoneos-arm64
+Maintainer: michelmelita1
+Installed-Size: 404
+Depends: mobilesubstrate, preferenceloader
+Conflicts: com.michaelmelita1.little16
+Replaces: com.michaelmelita1.little16
+Filename: debs/com.michaelmelita1.little16withsettings_0.2.0_iphoneos-arm64.deb
+Size: 27236
+MD5sum: 3daf516eb889d6e92f760c55f2b17a2e
+SHA1: ff68c3b3fd16fb1f007e7dd08e0de04163a16c66
+SHA256: 6dfd54eef0fe20cae52bc69a9d4b1aada566091e8076d5ab0abda0b9f7e8eda2
+Section: Tweaks
+Description: Little16 (iPhone X gestures, floating dock, iPad status bar, lockscreen quick actions) with a Settings pane to toggle each feature
+Author: michaelmelita1
+Name: Little16 With Settings
+Icon: https://forever9repo.github.io/assets/logogs17.png
+SileoDepiction: https://forever9repo.github.io/depictions/com.michaelmelita1.little16withsettings.json
+
 Package: com.raphetsoso.groupedsettings17
 Version: 2.2.0
 Architecture: iphoneos-arm64

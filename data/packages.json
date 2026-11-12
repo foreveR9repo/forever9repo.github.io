@@ -1,5 +1,35 @@
 [
  {
+  "id": "com.michaelmelita1.little16withsettings",
+  "name": "Little16 With Settings",
+  "author": "michaelmelita1",
+  "section": "Tweaks",
+  "description": "Little16 (iPhone X gestures, floating dock, iPad status bar, lockscreen quick actions) with a Settings pane to toggle each feature",
+  "added": "2026-11-12T17:42:12Z",
+  "free": true,
+  "_src": "foreveR9repo/Little16withSettings",
+  "versions": [
+   {
+    "version": "0.2.0",
+    "date": "2026-11-12T17:42:12Z",
+    "deb": "https://github.com/foreveR9repo/Little16withSettings/releases/download/1.0.0/com.michaelmelita1.little16withsettings_0.2.0_iphoneos-arm64.deb",
+    "arch": "iphoneos-arm64",
+    "size": 27236,
+    "installedSize": 404,
+    "depends": "mobilesubstrate, preferenceloader",
+    "md5": "3daf516eb889d6e92f760c55f2b17a2e",
+    "sha256": "6dfd54eef0fe20cae52bc69a9d4b1aada566091e8076d5ab0abda0b9f7e8eda2",
+    "_pkg": {
+     "id": "com.michaelmelita1.little16withsettings",
+     "name": "Little16 With Settings",
+     "author": "michaelmelita1",
+     "section": "Tweaks",
+     "description": "Little16 (iPhone X gestures, floating dock, iPad status bar, lockscreen quick actions) with a Settings pane to toggle each feature"
+    }
+   }
+  ]
+ },
+ {
   "id": "com.raphetsoso.groupedsettings17addon",
   "name": "GroupedSettings17 Addon for other Apps",
   "author": "raphetsoso",
