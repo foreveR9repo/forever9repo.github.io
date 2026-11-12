@@ -138,6 +138,9 @@ def main():
             json.dump(depiction(fields, banner_file if os.path.exists(os.path.join(ROOT, banner_file)) else None), f, ensure_ascii=False, indent=1)
             f.write("\n")
         lines = drop_fields(lines)
+        if fields.get("Filename", "").startswith("debs/beta/"):  # debs/beta/ -> section "Beta"
+            lines = [("Section: Beta" if l.lower().startswith("section:") else l) for l in lines]
+            fields["Section"] = "Beta"
         while lines and not lines[-1].strip():
             lines.pop()
         if os.path.exists(os.path.join(ROOT, icon_file)):

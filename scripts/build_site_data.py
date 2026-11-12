@@ -231,11 +231,14 @@ def main():
     now = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     known = {(pid, v.get("version")) for pid, e in packages.items() for v in e["versions"]}
     debs_dir = os.path.join(ROOT, "debs")
-    for name in sorted(os.listdir(debs_dir)) if os.path.isdir(debs_dir) else []:
-        if not name.lower().endswith(".deb"):
-            continue
-        path = os.path.join(debs_dir, name)
-        rel = "debs/" + name
+    found_debs = []
+    for dp, _, fs in os.walk(debs_dir):
+        for fn in fs:
+            if fn.lower().endswith(".deb"):
+                found_debs.append(os.path.relpath(os.path.join(dp, fn), ROOT).replace(os.sep, "/"))
+    for rel in sorted(found_debs):
+        path = os.path.join(ROOT, rel)
+        beta = rel.startswith("debs/beta/")
         try:
             c = read_deb(path)
             pid, version = c["Package"], c["Version"]
@@ -251,7 +254,7 @@ def main():
             "id": pid,
             "name": c.get("Name") or pid,
             "author": c.get("Author") or c.get("Maintainer", ""),
-            "section": c.get("Section", ""),
+            "section": "Beta" if beta else c.get("Section", ""),
             "description": fix_legacy(c.get("Description", "")),
         }
         ver = {
