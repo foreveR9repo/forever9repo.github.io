@@ -15,7 +15,7 @@ Section: Tweaks
 Description: Little16 (iPhone X gestures, floating dock, iPad status bar, lockscreen quick actions) with a Settings pane to toggle each feature
 Author: michaelmelita1
 Name: Little16 With Settings
-Icon: https://forever9repo.github.io/assets/logogs17.png
+Icon: https://forever9repo.github.io/assets/com.michaelmelita1.little16withsettings-icon.png
 SileoDepiction: https://forever9repo.github.io/depictions/com.michaelmelita1.little16withsettings.json
 
 Package: com.raphetsoso.groupedsettings17
