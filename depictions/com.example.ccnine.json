@@ -1,0 +1,47 @@
+{
+ "minVersion": "0.1",
+ "class": "DepictionTabView",
+ "tintColor": "#00c4a0",
+ "tabs": [
+  {
+   "tabname": "Details",
+   "class": "DepictionStackView",
+   "views": [
+    {
+     "class": "DepictionMarkdownView",
+     "markdown": "**Control Center d'iOS 9 pour iOS 16-17 (rootless)**",
+     "useSpacing": true
+    },
+    {
+     "class": "DepictionSeparatorView"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Version",
+     "text": "0.10.1"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Author",
+     "text": "foreveR9"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Section",
+     "text": "Tweaks"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Requires",
+     "text": "firmware (>= 16.0), mobilesubstrate"
+    },
+    {
+     "class": "DepictionTableTextView",
+     "title": "Architecture",
+     "text": "iphoneos-arm64"
+    }
+   ]
+  }
+ ],
+ "headerImage": "https://forever9repo.github.io/assets/banner.png"
+}
