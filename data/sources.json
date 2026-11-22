@@ -11,5 +11,9 @@
   {
   "repo": "foreveR9repo/Little16withSettings",
   "icon": "little16withsettingsprefs/Resources/logo@3x.png"
+  },
+  {
+    "repo": "foreveR9repo/CCNine",
+    "icon": "layout/Library/PackageIcons/com.example.ccnine.png"
   }
 ]

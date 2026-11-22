@@ -18,6 +18,8 @@ TINT = "#00c4a0"
 # Icone + banniere propres a certains paquets (les autres gardent ICON_FILE / BANNER_FILE)
 OVERRIDES = {
     "com.raphetsoso.groupedsettings17addon": {"icon": "assets/addon-icon.png", "banner": "assets/addon-banner.png"},
+    # CCNine : icone recuperee depuis le depot du tweak (cf. data/sources.json) par build_site_data.py
+    "com.example.ccnine": {"icon": "icons/com.example.ccnine.png"},
 }
 # Ancienne URL du depot, encore citee dans la description de certains .deb : remplacee par la nouvelle
 LEGACY_URLS = ["https://raphetsoso.github.io/repo/", "https://raphetsoso.github.io/repo"]
