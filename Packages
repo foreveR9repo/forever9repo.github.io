@@ -1,3 +1,21 @@
+Package: com.example.ccnine
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Maintainer: foreveR9
+Installed-Size: 284
+Depends: firmware (>= 16.0), mobilesubstrate
+Filename: debs/com.example.ccnine_1.0.0_iphoneos-arm64.deb
+Size: 45718
+MD5sum: 1858d2ea2272d25276fa5b0bf25ee0dd
+SHA1: 4d48d6493eb429b4b12d15a7df97a761da89e13c
+SHA256: e959e1983b37b146b16d930a80bf5ed83749d2a76b0da218ad5b5f03226cf4ba
+Section: Tweaks
+Description: Control Center d'iOS 9 pour iOS 16-17 (rootless)
+Author: foreveR9
+Name: CCNine
+Icon: https://forever9repo.github.io/icons/com.example.ccnine.png
+SileoDepiction: https://forever9repo.github.io/depictions/com.example.ccnine.json
+
 Package: com.michaelmelita1.little16withsettings
 Version: 0.2.0
 Architecture: iphoneos-arm64
