@@ -1,14 +1,14 @@
 Package: com.example.ccnine
-Version: 1.2.1
+Version: 1.3.0
 Architecture: iphoneos-arm64
 Maintainer: foreveR9
-Installed-Size: 280
+Installed-Size: 284
 Depends: firmware (>= 15.0), mobilesubstrate
-Filename: debs/com.example.ccnine_1.2.1_iphoneos-arm64.deb
-Size: 46766
-MD5sum: 2557f556dcc441be122065b59f71a95e
-SHA1: 6ef82d3d0fe425d37cd31a9f6d3081dd0b4cf3a2
-SHA256: de4455d81f3acec1f93dc1efa6d868e042219e476d38693218741df0451e1e57
+Filename: debs/com.example.ccnine_1.3.0_iphoneos-arm64.deb
+Size: 47422
+MD5sum: aa090e79c017d07d1b4cd9d218c7b79b
+SHA1: 7c95441f52df8f42a2705d22f73139f87c760f22
+SHA256: 2ba4d04bbe61801f27c36fd6cf2eacd8e25675392f89c50ff393110a233bd544
 Section: Tweaks
 Description: iOS 9 Control Center for iOS 15-17
 Author: foreveR9
