@@ -1,17 +1,17 @@
 Origin: foreveR9 repo
 Label: foreveR9 repo
 Suite: stable
-Version: 2026.11.24.129
+Version: 2026.11.24.130
 Codename: ios
 Architectures: iphoneos-arm64
 Components: main
 Description: foreveR9 repo
-Date: Tue, 24 Nov 2026 19:45:08 +0000
+Date: Tue, 24 Nov 2026 20:00:45 +0000
 MD5Sum:
- 74fbbe7e9f47a9e09c11fee03111c883 3506 Packages
- 75356973ccc67113c7fea84f64c19ccc 1378 Packages.gz
- b9041c5f9e6ab6e328e8512fa4ef8dcc 1527 Packages.bz2
+ f8363bc7f7a25f07128577fdb60eb4d8 3506 Packages
+ 8be6cc9821d9158e1af2a7ffd517deb7 1378 Packages.gz
+ 14cb6f2f8d52b35751f4118d3f4b82d7 1524 Packages.bz2
 SHA256:
- b1e1344b6a6093431bcdd54f68575fb976a7f7ce0def6058e656e1e7f64a7792 3506 Packages
- 45d6cf7643c8cef6b21545454cfb768a903d102a70cc0f8485c5bcdd1510ff87 1378 Packages.gz
- 2a92939d3c225b3f142153a71693ac9233bb5f854808b2a14caf6baaa96d7d8d 1527 Packages.bz2
+ 5dd9e05f46a9be77590c641669317b7053306562b8648764b8fea9db93dae177 3506 Packages
+ 2a3326087c1878ea5ab36740a93c9796ccc1027df1e16046c194116cbb29c928 1378 Packages.gz
+ a1b7831404421445487a46a3bfbeb5d3da6e5d2ce8525c06b0870864c0725f69 1524 Packages.bz2
