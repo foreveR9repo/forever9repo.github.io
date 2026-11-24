@@ -10,6 +10,24 @@
   "_src": "foreveR9repo/CCNine",
   "versions": [
    {
+    "version": "1.2.0",
+    "date": "2026-11-24T19:14:20Z",
+    "deb": "https://github.com/foreveR9repo/CCNine/releases/download/1.2.0/com.example.ccnine_1.2.0_iphoneos-arm64.deb",
+    "arch": "iphoneos-arm64",
+    "size": 46966,
+    "installedSize": 280,
+    "depends": "firmware (>= 15.0), mobilesubstrate",
+    "md5": "bbaca1607c15944d444cf2e8b811bc59",
+    "sha256": "0bf42ebbb15585f9d6570bf7604dd1af9a2885f2c5a8e4b507f60e906c8056ba",
+    "_pkg": {
+     "id": "com.example.ccnine",
+     "name": "CCNine",
+     "author": "foreveR9",
+     "section": "Tweaks",
+     "description": "iOS 9 Control Center for iOS 15-17"
+    }
+   },
+   {
     "version": "1.1.0",
     "date": "2026-11-24T17:49:41Z",
     "deb": "https://github.com/foreveR9repo/CCNine/releases/download/1.1.0/com.example.ccnine_1.1.0_iphoneos-arm64.deb",
